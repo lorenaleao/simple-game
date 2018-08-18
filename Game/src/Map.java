@@ -12,7 +12,7 @@ public class Map {
 		line = new ArrayList<Boolean>(mapSize);
 		
 		for(Boolean j : line){
-			i = false;
+			j = false;
 		}
 	}
 
@@ -21,11 +21,20 @@ public class Map {
 		return line.size;
 	}
 
-	public void updateMap(){
-
-	}
-
 	public boolean isMapEmpty(){
 		return (!line.contains(true));
+	}
+
+	public void updateMap(int position){
+		line.add(position, true);
+	}
+
+	public int findFirstEmptySpot(){
+		return line.indexOf(false);
+	}
+
+	public int expandMap(){
+		line.add(true);
+		return line.lastIndexOf(true);
 	}
 }

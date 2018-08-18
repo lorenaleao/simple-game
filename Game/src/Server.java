@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Server {
 	
-	private static int playerNumber; //variavel controle de IDs dos jogadores
 	private int players; //numero maximo de jogadores
 	private List<Integer> activePlayers; //vetor de jogadores ativos
 	
@@ -13,7 +12,6 @@ public class Server {
 	
 	//constructor
 	public Server(int maxPlayers){
-		playerNumber = 0;
 		players = maxPlayers;
 		activePlayers = new ArrayList<Integer>();
 	}
@@ -23,13 +21,12 @@ public class Server {
 	}
 	
 	//methods
-	public int setPlayerID(){
-		playerNumber++;
-		return playerNumber; //eu quero que essa variável seja manipulada como uma referencia, pois toda vez que eu criar um jogador, eu vou incrementa-la
+	public boolean addNewPlayer(int playerID) {
+		return activePlayers.add(playerID);
 	}
 
-	public boolean createNewPlayer(int playerID) {
-		return activePlayers.add(playerID);
+	public boolean removePlayer(Integer playerID) {
+		return activePlayers.remove(playerID);
 	}
 	
 	public void showPlayers() {
