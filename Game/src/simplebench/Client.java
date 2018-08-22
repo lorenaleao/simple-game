@@ -1,3 +1,6 @@
+package simplebench;
+
+
 
 public class Client {
 	
@@ -6,25 +9,39 @@ public class Client {
 	private static int numberOfPlayers = 0;
 
 	//constructor
-	public Client(Server s, Map m){ 
+	public Client(Server s, Mapa m){ 
 		
+            
+                // ToDo: Delegar ao servidor o trabalho de gerar um ID novo 
+                // para este usuário, baseado nos players atualmente ativos no 
+                // jogo playerID = server.getNewUserId();
 		playerID = ++numberOfPlayers;
 		
 		//no constructor do jogador(Player) eu utilizo o metodo addNewPlayer da classe Server ou eu faço isso em SimpleGame?
 		if(s.addNewPlayer(playerID)) System.out.println("Seu jogador foi criado! Seu numero de identificacao eh: " + playerID);
 		else System.out.println("Oops! Houve um erro na criacao do seu jogador...");
 		
+                // ToDo: Delegar essa determinacao pro servidor
 		playerLocation = determinePlayerInitialLocation(m);
 
 	}
 
 	//methods
 	public int getID(){
-		return playerID;
+            return playerID;
 	}
+        
+        // ToDo: Implementar um método que muda a posicao do player
+        // envia uma solicitacao pro servidor ( left ou right ).
+        // o servidor tenta alterar a posicao do cliente para alguma
+        // dessas novas posicoes. Se nao houver conflito o servidor 
+        // retorna true senão false, ou retorna a nova posicao se sucesso
+        // e -1 se teve conflito
 
-	public int determinePlayerInitialLocation(Map m){
-		if(m.isMapEmpty) {
+	public int determinePlayerInitialLocation(Mapa m){
+		if(m.isMapEmpty()) {
+                    // ToDo: Usar posicao aleatória em vez de sequencial
+                    // posicao aleatorio restringida pelo numero maximo de players
 			playerLocation = 0;
 			m.updateMap(playerLocation);
 		} else {
@@ -34,6 +51,7 @@ public class Client {
 												//m.expandMap expande o mapa adicionando o jogador a ele e retornando sua posição 
 			}
 		}
+                return playerLocation;
 	}
 
 	public void makeMyPlayerInactive(int myID, Server s){

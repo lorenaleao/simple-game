@@ -1,12 +1,17 @@
-import java.util.ArrayList;
+package simplebench;
 
-public class Map {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Mapa {
 	
 	private int mapSize; //tamanho do mapa inicial
-	private ArrayList<Boolean> line; //este é o mapa/campo do jogo, uma linha.
+        // ToDo: Trocar de List pra array simples, como tamanho fixo
+        // definido no momento de inicializacao
+	private List<Boolean> line; //este é o mapa/campo do jogo, uma linha.        
 
 	//constructor
-	public Map(int size){
+	public Mapa(int size){
 		
 		mapSize = size;
 		line = new ArrayList<Boolean>(mapSize);
@@ -18,7 +23,7 @@ public class Map {
 
 	//methods
 	public int getCurrentMapSize(){
-		return line.size;
+		return line.size();
 	}
 
 	public boolean isMapEmpty(){
