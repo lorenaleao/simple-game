@@ -1,4 +1,4 @@
-//package SimpleGame;
+package simplebench;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class Server {
     }
         
     //methods
-    public int createNewUserID(){
+    public synchronized int createNewUserID(){
         return ++numberOfPlayers;
     }
         
@@ -47,15 +47,15 @@ public class Server {
         if(activePlayers.size() < maxNumberOfPlayers){
 
             if(activePlayers.add(playerID)) {
-                System.out.println("Seu jogador foi criado! Seu numero de identificacao é: " + playerID);
+                //System.out.println("Seu jogador foi criado! Seu numero de identificacao é: " + playerID);
                 return true;
             } else {
-                System.out.println("Oops! Houve um erro na criacao do seu jogador...");
+                System.err.println("Oops! Houve um erro na criacao do seu jogador...");
                 return false;
             }
 
         } else {
-            System.out.println("Eita! O mapa atingiu sua capacidade máxima.");
+            System.err.println("Eita! O mapa atingiu sua capacidade máxima.");
             return false;
         }
     }
@@ -151,9 +151,9 @@ public class Server {
             mapSize = size;
             line = new int[mapSize];
 
-            for(int j : line){
-                j = 0;
-            }
+//            for(int j : line){
+//                j = 0;
+//            }
         }
 
         //methods

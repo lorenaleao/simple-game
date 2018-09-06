@@ -1,4 +1,4 @@
-//package SimpleGame;
+package simplebench;
 
 /**
  * Client class
@@ -13,15 +13,19 @@
  */
 
 public class Client {
-    private final int playerID;
+    private int playerID;
     private int playerLocation; //considerando que o espaço de jogadores é uma linha, a localização de um jogador é apenas um número
+    private Server s;
 
-    //constructor
-    public Client(Server s){ 
-        
-                // ToDo: Delegar ao servidor o trabalho de gerar um ID novo 
+    public Client(Server _s) {
+        s = _s;
+    }
+    
+    public void connect() {
+                 // ToDo: Delegar ao servidor o trabalho de gerar um ID novo 
                 // para este usuário, baseado nos players atualmente ativos no 
                 // jogo playerID = server.getNewUserId();
+        
         
         playerID = s.createNewUserID();
         if(s.addNewPlayer(playerID))
